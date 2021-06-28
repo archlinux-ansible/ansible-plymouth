@@ -1,0 +1,7 @@
+---
+
+plymouth__config_path: /etc/plymouth/plymouthd.conf
+plymouth__config:
+  Theme: spinner
+  ShowDelay: 2
+  DeviceTimeout: 8

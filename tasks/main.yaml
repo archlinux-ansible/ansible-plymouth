@@ -1,0 +1,27 @@
+---
+
+- name: Configure plymouth
+  template:
+    src: plymouthd.conf.j2
+    dest: "{{ plymouth__config_path }}"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Get service facts
+  service_facts:
+
+- name: Find active display manager
+  set_fact:
+    display_manager: "{{ ansible_facts.services | active_service_manager | default('') }}"
+
+- name: Enable plymouth display manager service
+  service:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+    loop:
+      - name: "{{ display_manager }}"
+        state: disabled
+      - name: "{{ display_manager }}-plymouth"
+        state: enabled
+  when: display_manager | length > 0
