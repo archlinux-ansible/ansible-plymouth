@@ -11,7 +11,6 @@ DOCUMENTATION = """
 """
 from ansible import errors
 from ansible.module_utils.common._collections_compat import MutableMapping
-import itertools
 
 class FilterModule(object):
     def filters(self):
