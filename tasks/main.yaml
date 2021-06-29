@@ -13,7 +13,7 @@
 
 - name: Find active display manager
   set_fact:
-    display_manager: "{{ ansible_facts.services | active_service_manager | default('') }}"
+    display_manager: "{{ ansible_facts.services | active_display_manager | default('') }}"
 
 - name: Enable plymouth display manager service
   service:
