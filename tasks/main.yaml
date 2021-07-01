@@ -18,10 +18,10 @@
 - name: Enable plymouth display manager service
   service:
     name: "{{ item.name }}"
-    state: "{{ item.state }}"
-    loop:
-      - name: "{{ display_manager }}"
-        state: disabled
-      - name: "{{ display_manager }}-plymouth"
-        state: enabled
+    enabled: "{{ item.enabled }}"
+  loop:
+    - name: "{{ display_manager }}"
+      enabled: no
+    - name: "{{ display_manager }}-plymouth"
+      enabled: yes
   when: display_manager | length > 0
